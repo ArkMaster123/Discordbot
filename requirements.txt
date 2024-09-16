@@ -1,8 +1,8 @@
-discord.py==2.3.2
+discord-py==2.3.2
 requests==2.31.0
-Flask==2.0.1
+Flask==2.2.5  # Updated to a version compatible with newer Werkzeug
+Werkzeug==2.2.3  # Explicitly added to avoid incompatibility
 aiohttp==3.9.1
 python-dotenv==1.0.1
-python-socketio==5.8.0
+socketio==0.2.1
 pymongo==4.8.0
-gunicorn==20.1.0

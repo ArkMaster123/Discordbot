@@ -424,5 +424,5 @@ async def clear_subscriber_cache_periodically():
 
 
 if __name__ == "__main__":
-    keep_alive()
-    client.run(TOKEN)
+    keep_alive()  # This starts the Flask app in a separate thread
+    client.run(TOKEN)  
