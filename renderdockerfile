@@ -1,0 +1,35 @@
+# Use a lightweight Python image
+FROM python:3.10-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install necessary system dependencies for building Python packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev \
+    libffi-dev \
+    libssl-dev \
+    && apt-get clean
+
+# Upgrade pip, setuptools, and wheel
+RUN pip install --upgrade pip setuptools wheel
+
+# Copy the requirements file to the working directory
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the port for Flask
+EXPOSE 8080
+
+# Render uses PORT environment variable, so we set it to 8080
+ENV PORT=8080
+ENV PYTHONUNBUFFERED=1
+
+# Run the Flask app and Discord bot together
+CMD ["python", "main.py"]
